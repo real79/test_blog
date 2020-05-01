@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <title>Блог. Создание статьи</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="header-nav">
+        <div class="nav-wrapper">
+            <ul class="nav-list">
+                <li class="left-nav">
+                    <a href="#" class="logo">
+                        <img src="{% static 'img/Logo_Kodland.png' %}" alt="logo">
+                    </a>
+                    <a href="#" class="blog-caption">Блог / Добавить статью</a>
+                </li>
+                <li class="right-nav">
+                    <ul class="right-ul">
+                        <li class="email">
+                            <a href="#"><img src="{% static 'img/email.png' %}" alt="email"></a>
+                        </li>
+                        <li class="group">
+                            <a href="#"><img src="{% static 'img/Group.png' %}" alt="group"></a>
+                        </li>
+                        <li class="logout">
+                            <a href="#"><img src="{% static 'img/logout.png' %}" alt="logout"></a>
+                        </li>
+                    </ul>    
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <form method="POST" enctype="multipart/form-data" action="/create/">
+    {% csrf_token %}
+        <div class="main-wrapper">
+            <p class="article-add-caption">
+                Добавить статью
+            </p>
+            <input type="text" placeholder="Введите название статьи" class="input-title" name="title">
+            <input type="submit" class="button-send" value="Опубликовать">
+            <textarea name="body" cols="30" rows="10" class="input-article-body"></textarea>
+            <div class="img-wrapper">
+                <input type='file' id="upload" class="load-image" name="image" required/>
+                <img class=uploaded-image src="#" id="image" alt="image"/>
+                <script language="javascript">
+                    function readURL(e) {
+                        if (this.files && this.files[0]) {
+                            var reader = new FileReader();
+                            $(reader).load(function(e) { 
+                                $('#image').attr('src', e.target.result); 
+                            });
+                            reader.readAsDataURL(this.files[0]);
+                        }
+                    }
+                    $("#upload").change(readURL);
+                </script>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="header-nav">
+        <div class="nav-wrapper">
+            <ul class="nav-list">
+                <li class="left-nav">
+                    <a href="#" class="logo">
+                        <img src="{% static 'img/Logo_Kodland.png' %}" alt="logo">
+                    </a>
+                    <a href="#" class="blog-caption">Блог</a>
+                </li>
+                <li class="right-nav">
+                    <ul class="right-ul">
+                        <li class="email">
+                            <a href="#"><img src="{% static '/img/email.png' %}" alt="email"></a>
+                        </li>
+                        <li class="group">
+                            <a href="#"><img src="{% static '/img/Group.png' %}" alt="group"></a>
+                        </li>
+                        <li class="logout">
+                            <a href="#"><img src="{% static '/img/logout.png' %}" alt="logout"></a>
+                        </li>
+                    </ul>    
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <img src={{new_article.image.url|default:'#'}} alt="new-article-image" class="new-article-image">
+    <a href="#" class="new-article-title">{{new_article.title|default:"нет ни одной статьи"}}</a>
+    <p class="new-article-body">
+        {{new_article.body|default:""}}
+    </p>
+    <div class="button-read">
+        <a href="#" class="link-read">
+            Читать
+        </a>
+    </div>
+
+    <div class="other-articles">
+        <p class="other-articles-header">Другие статьи</p>
+        <div class="other-articles-wrapper">
+            {% for article in other_articles %}
+            <div class="article-group">
+                <img src={{article.image.url|default:'#'}} alt="" class="article-image">
+                <p class="article-date">
+                    {{article.date}}
+                </p>
+                <p class="static-text">Професии будущего</p>
+                <a href="#" class="article-link">
+                    {{article.title}}
+                </a>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</body>
+</html>
