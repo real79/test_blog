@@ -1,3 +1,7 @@
 from django.test import TestCase
 
-# Create your tests here.
+class TestListView(TestCase):
+    def testMain(self):
+        response=self.client.get('http://testserver/')
+        assert response.status_code==200
+

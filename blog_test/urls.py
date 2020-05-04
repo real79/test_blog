@@ -22,7 +22,7 @@ from blog.views import ViewArticles,CreateArticleView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('fdsdf/',ViewArticles.as_view(template_name='index.html')),
+    path('',ViewArticles.as_view(template_name='index.html')),
     path('create/', CreateArticleView.as_view())
 ]
 
